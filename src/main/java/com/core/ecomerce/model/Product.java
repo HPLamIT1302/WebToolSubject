@@ -71,4 +71,6 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+    //hophuclam_22680401
+    //toString
 }
