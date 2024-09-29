@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <h1 class="my-4">Thêm Sản Phẩm Mới</h1>
-    <form th:action="@{/products}" th:object="${product}" method="post">
+    <form id="productForm" th:action="@{/products}" th:object="${product}" method="post">
 
         <div class="mb-3">
             <label for="name" class="form-label">Tên Sản Phẩm:</label>
@@ -31,6 +31,7 @@
                     </li>
                 </ul>
             </div>
+            <input type="hidden" id="cateId" th:field="*{cateId}" />
         </div>
 
         <div class="mb-3">
@@ -43,7 +44,7 @@
             <input type="text" id="image" class="form-control" th:field="*{image}" />
         </div>
 
-        <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
+        <button type="submit" id="btn-submit" class="btn btn-primary">Thêm Sản Phẩm</button>
     </form>
 </div>
 
@@ -55,19 +56,14 @@
 
 <script>
     $(document).ready(function () {
-        // Bắt sự kiện click trên các mục danh sách
+        // Update dropdown text and hidden input value
         $(document).on('click', '.dropdown-item', function (event) {
             event.preventDefault();
 
-            // Lấy giá trị từ data-value của mục được chọn
             let selectedValue = $(this).data('value');
             let selectedText = $(this).text();
-            console.log(selectedValue, selectedText);
 
-            // Cập nhật văn bản của nút dropdown
             $('#categoryDropdown').text(selectedText);
-
-            // Cập nhật giá trị của input ẩn
             $('#cateId').val(selectedValue);
         });
     });
