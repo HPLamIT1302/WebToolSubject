@@ -14,7 +14,7 @@ public class Product {
 
     private float price;
 
-    @Column(name = "cate_id")
+    @Column()
     private int cateId;
 
     @Column(length = 255)

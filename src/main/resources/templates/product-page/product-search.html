@@ -22,7 +22,7 @@
     <th>Image</th>
     <th>Actions</th>
   </tr>
-  <tr th:each="product : ${products}"> <!-- Change result to products -->
+  <tr th:each="product : ${result}">
     <td th:text="${product.id}">1</td>
     <td th:text="${product.name}">Product Name</td>
     <td th:text="${product.price}">100.0</td>
@@ -36,5 +36,8 @@
   </tr>
 </table>
 
+<div th:if="${#lists.isEmpty(result)}">
+  <p>No products found matching your search.</p>
+</div>
 </body>
 </html>
