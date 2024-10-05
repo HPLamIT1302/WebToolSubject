@@ -17,7 +17,7 @@ CREATE TABLE Employee (
 
 -- Tạo bảng Customer
 CREATE TABLE Customer (
-    CustomerID CHAR(10) PRIMARY KEY NOT NULL,
+    CustomerID CHAR(10) PRIMARY KEY,
     CompanyName VARCHAR(50) NOT NULL,
     Phone VARCHAR(12), -- Xóa CHECK constraint ở đây để tránh lỗi
     Address VARCHAR(60),
@@ -39,6 +39,7 @@ CREATE TABLE Supplier (
     Address VARCHAR(60),
     Email VARCHAR(30)
 );
+
 -- Tạo bảng Product
 CREATE TABLE Product (
     ProductID INT PRIMARY KEY AUTO_INCREMENT,
@@ -53,6 +54,7 @@ CREATE TABLE Product (
     FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 -- Tạo bảng Orders
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY AUTO_INCREMENT,
@@ -83,6 +85,8 @@ CREATE TABLE OrderDetail (
 -- Xem tất cả các bảng trong cơ sở dữ liệu
 SHOW TABLES;
 
+-- Xem cấu trúc bảng Employee
+DESCRIBE Employee;
 
 -- Chèn mẫu tin
 -- Dữ liệu cho bảng Employee
