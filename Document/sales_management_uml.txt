@@ -1,0 +1,70 @@
+from graphviz import Digraph
+
+# Create a new UML diagram
+uml = Digraph(format='png')
+uml.attr(rankdir='TB', size='10')
+
+# Adding classes
+uml.node('Employee', '''Employee
+- EmployeeID: Integer
+- Name: String
+- Phone: String
+- Username: String
+- Password: String
+- Role: Boolean (0 = User, 1 = Admin)
+- Image: Blob''')
+
+uml.node('Customer', '''Customer
+- CustomerID: String
+- CompanyName: String
+- Phone: String
+- Address: String
+- Email: String''')
+
+uml.node('Category', '''Category
+- CategoryID: Integer
+- CategoryName: String
+- Image: Blob''')
+
+uml.node('Supplier', '''Supplier
+- SupplierID: Integer
+- SupplierName: String
+- Phone: String
+- Address: String
+- Email: String''')
+
+uml.node('Product', '''Product
+- ProductID: Integer
+- ProductName: String
+- CategoryID: Integer
+- SupplierID: Integer
+- Price: Money
+- Quantity: Integer
+- Image: Blob''')
+
+uml.node('Order', '''Order
+- OrderID: Integer
+- CustomerID: String
+- EmployeeID: Integer
+- OrderDate: Date
+- TotalAmount: Money
+- OrderStatus: Enum (Processing, Completed, Cancelled)''')
+
+uml.node('OrderDetail', '''OrderDetail
+- OrderID: Integer
+- ProductID: Integer
+- Quantity: SmallInteger
+- UnitPrice: Money''')
+
+# Adding relationships
+uml.edge('Order', 'Customer', label='0..1')
+uml.edge('Order', 'Employee', label='1')
+uml.edge('OrderDetail', 'Order', label='1..*')
+uml.edge('OrderDetail', 'Product', label='1')
+uml.edge('Product', 'Category', label='1')
+uml.edge('Product', 'Supplier', label='1')
+
+# Render the UML diagram
+uml.render('/mnt/data/sales_management_uml')
+
+'/mnt/data/sales_management_uml.png'
